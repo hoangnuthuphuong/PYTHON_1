@@ -62,7 +62,7 @@ class OrderDetail:
 
 
 class Order:
-    payments: [Cash,Check,Credit]
+    payments: list[Cash,Check,Credit]
     detail: OrderDetail
     status: str
 
