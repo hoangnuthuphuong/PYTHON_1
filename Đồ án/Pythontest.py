@@ -107,3 +107,5 @@ class Student(Person):
         for hocphan in self.dshp:
             result += "\t" + hocphan.outputCourseInfo() + "\n"
         return result
+
+print(hello)
