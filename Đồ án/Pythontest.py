@@ -2,7 +2,7 @@ class Person:
     name: str
     age: int
     gender: str
-    phone: str
+    phone: int
     email: str
 
     def __init__(self, name, age, gender, phone, email) -> None:
@@ -22,7 +22,7 @@ class Person:
     def setGender(self, gender: str) -> None:
         self.gender = gender
 
-    def setPhone(self, phone: str) -> None:
+    def setPhone(self, phone: int) -> None:
         self.phone = phone
 
     def setEmail(self, email: str) -> None:
@@ -34,14 +34,14 @@ class Person:
     def getGender(self) -> str:
         return self.gender
 
-    def getPhone(self) -> str:
+    def getPhone(self) -> int:
         return self.phone
 
     def getEmail(self) -> str:
         return self.email
 
     def outputPerson(self) -> str:
-        result = "Ho ten: " + self.name + "Gioi tinh: " + self.gender + "; sdt: " + self.phone + "; email: " + self.email
+        result = "Ho ten: " + self.name + "Gioi tinh: " + self.gender + "; sdt: " + str(self.phone) + "; email: " + self.email
         return result
 
 class Hoc_phan:
@@ -70,42 +70,40 @@ class Hoc_phan:
         return result
 
 class Student(Person):
-    stuID: str
+    studentID: str
     dshp: list[Hoc_phan]
 
-    def __init__(self, name: str, phone: str, email: str, studentID: str, gpa: float) -> None:
+    def __init__(self, name: str, phone: int, email: str, studentID: str, chuyennganh: str, hanhkiem: str) -> None:
         Person.__init__(self, name, phone, email)
         self.studentID = studentID
-        self.gpa = gpa
+        self.chuyennganh = chuyennganh
+        self.hanhkiem = hanhkiem
         self.dshp = []
-
 
 
     def setStudentID(self, id: str) ->None:
         self.studentID = id
 
-    def setGPA(self, gpa: float) -> None:
-        self.gpa = gpa
+    def getChuyennganh(self, chuyennganh: str) -> None:
+        self.chuyennganh = chuyennganh
 
-    def setDSHP(self, dshp: list[Course]) -> None:
+    def setDSHP(self, dshp: list[Hoc_phan]) -> None:
         self.dshp = dshp
 
-    def addCourse(self, hocphan: Course) -> None:
+    def addHocphan(self, hocphan: Hoc_phan) -> None:
         self.dshp.append(hocphan)
 
     def getStudentID(self) -> str:
         return self.studentID
 
-    def getGPA(self) -> float:
-        return self.gpa
+    def getHanhkiem(self) -> str:
+        return self.hanhkiem
 
-    def getDSHP(self) -> list[Course]:
+    def getDSHP(self) -> list[Hoc_phan]:
         return self.dshp
 
-    def outputStudentInfo(self) -> str:
-        result = self.outputPersonInfo() + "; ma so SV: " + self.studentID + "; DTB: " + str(self.gpa) + "\n"
+    def outputStudent(self) -> str:
+        result = self.outputPerson() + "; ma so SV: " + self.studentID + "; Chuyen nganh: " + self.chuyennganh + "; Hanh kiem: " + self.hanhkiem + "\n"
         for hocphan in self.dshp:
-            result += "\t" + hocphan.outputCourseInfo() + "\n"
+            result += "\t" + hocphan.outputHocphan() + "\n"
         return result
-
-print(hello)
