@@ -13,32 +13,6 @@ class Person:
         self.phone = phone
         self.email = email
 
-    def setName(self, name: str) -> None:
-        self.name = name
-
-    def setAge(self, age: int) -> None:
-        self.age = age
-
-    def setGender(self, gender: str) -> None:
-        self.gender = gender
-
-    def setPhone(self, phone: int) -> None:
-        self.phone = phone
-
-    def setEmail(self, email: str) -> None:
-        self.email = email
-
-    def getName(self) -> str:
-        return self.name
-
-    def getGender(self) -> str:
-        return self.gender
-
-    def getPhone(self) -> int:
-        return self.phone
-
-    def getEmail(self) -> str:
-        return self.email
 
     def outputPerson(self) -> str:
         result = "Ho ten: " + self.name + "Gioi tinh: " + self.gender + "; sdt: " + str(self.phone) + "; email: " + self.email
@@ -70,40 +44,59 @@ class Hoc_phan:
         return result
 
 class Student(Person):
-    studentID: str
+    stuID: str
+    chuyennganh: str
+    hanhkiem: str
     dshp: list[Hoc_phan]
 
-    def __init__(self, name: str, phone: int, email: str, studentID: str, chuyennganh: str, hanhkiem: str) -> None:
-        Person.__init__(self, name, phone, email)
-        self.studentID = studentID
+    def __init__(self, name: str, age: int, gender: str, phone: int, email: str, stuID, chuyennganh, hanhkiem ) -> None:
+        Person.__init__(self, name, age, gender, phone, email)
+        self.stuID = stuID
         self.chuyennganh = chuyennganh
         self.hanhkiem = hanhkiem
         self.dshp = []
 
 
-    def setStudentID(self, id: str) ->None:
-        self.studentID = id
-
-    def getChuyennganh(self, chuyennganh: str) -> None:
-        self.chuyennganh = chuyennganh
-
-    def setDSHP(self, dshp: list[Hoc_phan]) -> None:
-        self.dshp = dshp
-
-    def addHocphan(self, hocphan: Hoc_phan) -> None:
-        self.dshp.append(hocphan)
-
-    def getStudentID(self) -> str:
-        return self.studentID
-
-    def getHanhkiem(self) -> str:
-        return self.hanhkiem
-
     def getDSHP(self) -> list[Hoc_phan]:
         return self.dshp
 
     def outputStudent(self) -> str:
-        result = self.outputPerson() + "; ma so SV: " + self.studentID + "; Chuyen nganh: " + self.chuyennganh + "; Hanh kiem: " + self.hanhkiem + "\n"
+        result = self.outputPerson() + "; ma so SV: " + self.stuID + "; Chuyen nganh: " + self.chuyennganh + "; Hanh kiem: " + self.hanhkiem + "\n"
+        return result
+
+
+class Lecturer(Person):
+    lecID: str
+    dshp: list[Hoc_phan]
+
+    def __init__(self, gender: str, name: str, phone: int, email: str, lecID: str, trinhdo: str, luong: str) -> None:
+        Person.__init__(self, name, gender, phone, email)
+        self.lecID = lecID
+        self.trinhdo = trinhdo
+        self.luong = luong
+        self.dshp = []
+
+    def setLecturerID(self, id: str) ->None:
+        self.lecturerID = id
+
+    def getLuong(self, luong: str) -> None:
+        self.luong = luong
+
+    def addHocphan(self, hocphan: Hoc_phan) -> None:
+        self.dshp.append(hocphan)
+
+    def getLecturerID(self) -> str:
+        return self.lecturerID
+
+    def getTrinhdo(self) -> str:
+        return self.trinhdo
+
+    def getDSHP(self) -> list[Hoc_phan]:
+        return self.dshp
+
+    def outputLecturer(self) -> str:
+        result = self.outputPerson() + "; ma so : " + self.lecID + "; Trinh do: " + self.trinhdo + "\n"
         for hocphan in self.dshp:
             result += "\t" + hocphan.outputHocphan() + "\n"
         return result
+
