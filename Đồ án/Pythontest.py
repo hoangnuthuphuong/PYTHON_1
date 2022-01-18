@@ -5,6 +5,7 @@ class Person:
     phone: int
     email: str
 
+
     def __init__(self, name, age, gender, phone, email) -> None:
         super().__init__()
         self.name = name
