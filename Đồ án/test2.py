@@ -1,40 +1,61 @@
 from test1 import QuanLySinhVien
+from Pythontest import Student
 
-# khởi tạo một đối tượng QuanLySinhVien để quản lý sinh viên
 dssv = QuanLySinhVien()
+ds = []
+
 while (1 == 1):
-    print("\nCHUONG TRINH QUAN LY SINH VIEN C#")
+    print("\nCHUONG TRINH QUAN LY SINH VIEN")
     print("*************************MENU**************************")
-    print("**  1. Them sinh vien.                               **")
-    print("**  2. Cap nhat thong tin sinh vien.                 **")
-    print("**  3. Xoa sinh vien.                                **")
-    print("**  4. Tim kiem sinh vien theo ten.                  **")
-    print("**  5. Sap xep sinh vien theo ten.                   **")
-    print("**  6. Hien thi danh sach giang vien                 **")
-    print("**  7. Hien thi danh sach sinh vien.                 **")
-    print("**  0. Thoat                                         **")
+    print("**  1. Thêm sinh viên.                               **")
+    print("**  2. Cập nhật thông tin sinh viên.                 **")
+    print("**  3. Xóa sinh viên.                                **")
+    print("**  4. Tìm kiếm sinh viên theo tên.                  **")
+    print("**  5. Sắp xếp sinh viên theo tên.                   **")
+    print("**  6. Hiển thị số sinh viên trong danh sách.        **")
+    print("**  7. Tra cứu thông tin sinh viên.                  **")
+    print("**  8. Hiển thị danh sách sinh viên.                 **")
+    print("**  0. Thoát                                         **")
     print("*******************************************************")
 
-    key = int(input("Nhap tuy chon: "))
+    key = int(input("nhập tuy chọn: "))
     if (key == 1):
-        print("\n1. Them sinh vien.")
-        dssv.nhapSinhVien()
-        print("\nThem sinh vien thanh cong!")
+        print("\n1. Thêm sinh viên.")
+        name = input("nhập tên sinh viên: ")
+        phone = int(input("nhập số điện thoại: "))
+        email = input("nhập email: ")
+        stuID = input("nhập ID sinh viên: ")
+        chuyennganh = str(input("nhập chuyên ngành: "))
+        hanhkiem = str(input("nhập hạnh kiểm: "))
+
+
+        def __init__() -> object:
+           stu = (Student(name, phone, email, stuID, chuyennganh, hanhkiem))
+           ds.append(stu)
+        print("\nThêm sinh viên thành công!")
+
+
     elif (key == 2):
         if (dssv.soLuongSinhVien() > 0):
-            print("\n2. Cap nhat thong tin sinh vien. ")
-            print("\nNhap ID: ")
+            print("\n2. Cập nhật thông tin sinh viên. ")
+            print("\nNhập ID: ")
             ID = int(input())
             dssv.updateSinhVien(ID)
         else:
-            print("\nSanh sach sinh vien trong!")
+            print("\nDanh sách sinh viên trống!")
+
+
     elif (key == 3):
-        print("\n3. Xoa sinh vien.")
-        muonxoa = []  # Khởi tạo một mảng chứa kết quả cần tìm
-        name = input("Nhap ten sinh vien: ")  # Là chuỗi con bạn cần tìm, ví dụ 'abc'
-        for name in dssv:  # Duyệt từng phần tử trong mảng
-            if muonxoa in dssv:  # Xét xem chuỗi có nằm trong phần tử này hay không?
-                print(sorted(set(dssv), key=dssv.index))
+        name = input("Nhập Id Sinh viên cần xóa :  ")
+        for i in ds:
+            if i.get_name() == name:
+                assert isinstance(i, object)
+                ds.remove(i)
+                print("Bạn đã xóa sinh viên thành công ")
+                continue
+            print("đã xóa")
+        else:
+                print("không có sinh viên trong danh sách")
 
 
 
@@ -44,46 +65,50 @@ while (1 == 1):
         name = input()
         if (name == 1):
             if (dssv.soLuongSinhVien() > 0):
-                print("\n4. Tim kiem sinh vien theo ten.")
-                print("\nNhap ten de tim kiem: ")
+                print("\n4. Tìm kiếm sinh viên.")
+                print("\nNhập tên sinh viên muốn tìm kiếm: ")
                 name = input()
                 searchResult = dssv.findByName(name)
                 dssv.showSinhVien(searchResult)
             else:
-                print("\nKhong tim thay trong danh sach")
+                print("\nKhông tìm thấy trong danh sách")
         else:
-            print("\nKhong tim thay trong danh sach")
-
-
+            print("\nKhông tìm thấy sinh viên trong danh sách")
 
 
     elif (key == 5):
         if (dssv.soLuongSinhVien() > 0):
-            print("\n5. Sap xep sinh vien theo ten.")
+            print("\n5. Sắp xếp sinh viên theo tên.")
             dssv.sortByName()
             dssv.showSinhVien(dssv.getListSinhVien())
         else:
-            print("\nSanh sach sinh vien trong!")
+            print("\nDanh sách sinh viên trống!")
+
+    elif key == 6:
+        print(f"\nHiện có {len(ds)} Sinh Viên \n")
 
 
-    elif (key == 6):
+    elif key == 7:
+        if len(ds) == 0:
+            print("\n hiện không có sinh viên . Bạn vui lòng thêm sinh viên vào danh sách !")
+        else:
+            print(f"\nHiện có {len(ds)} Sinh viên ")
+            for i in ds:
+                i.show_info()
+
+    elif (key == 8):
         if (dssv.soLuongSinhVien() > 0):
-            print("\n6. Sap xep sinh vien theo ID.")
-            dssv.sortByName()
+            print("\n6. Hiển thị danh sách sinh viên.")
             dssv.showSinhVien(dssv.getListSinhVien())
         else:
-            print("\nSanh sach sinh vien trong!")
-    elif (key == 7):
-        if (dssv.soLuongSinhVien() > 0):
-            print("\n7. Hien thi danh sach sinh vien.")
-            dssv.showSinhVien(dssv.getListSinhVien())
-        else:
-            print("\nSanh sach sinh vien trong 7!")
+            print("\nDanh sách sinh viên trống!")
 
     elif (key == 0):
 
-        print("\nBan da chon thoat chuong trinh!")
+        print("\nBạn đã thoát chương trình!")
         break
     else:
-        print("\nKhong co chuc nang nay!")
-        print("\nHay chon chuc nang trong hop menu.")
+        print("\nKhông có chức năng này!")
+        print("\nHãy chọn chức năng có trong menu.")
+
+
