@@ -29,6 +29,7 @@ class QuanLySinhVien:
                 print("\n")\
 
 
+
     # Hàm trả về danh sách sinh viên
     def getListSinhVien(self):
         return self.listSinhVien
