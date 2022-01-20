@@ -7,6 +7,7 @@ class Person:
         self.phone = sdt
         self.gender = gioitinh
 
+
     def setName(self, ten: str):
         self.name = ten
 
