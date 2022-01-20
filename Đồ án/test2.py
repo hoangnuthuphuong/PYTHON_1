@@ -1,115 +1,52 @@
-from test1 import QuanLySinhVien
-from Pythontest import Student
+from Pythontest import Person, KetQuaHocTap, MonHoc, Student, Lecturer
 
-dssv = QuanLySinhVien()
-ds = []
+class Hoc_phan:
 
-while (1 == 1):
-    print("\nCHUONG TRINH QUAN LY SINH VIEN")
-    print("*************************MENU**************************")
-    print("**  1. Thêm sinh viên.                               **")
-    print("**  2. Cập nhật thông tin sinh viên.                 **")
-    print("**  3. Xóa sinh viên.                                **")
-    print("**  4. Tìm kiếm sinh viên theo tên.                  **")
-    print("**  5. Sắp xếp sinh viên theo tên.                   **")
-    print("**  6. Hiển thị số sinh viên trong danh sách.        **")
-    print("**  7. Tra cứu thông tin sinh viên.                  **")
-    print("**  8. Hiển thị danh sách sinh viên.                 **")
-    print("**  0. Thoát                                         **")
-    print("*******************************************************")
-
-    key = int(input("nhập tuy chọn: "))
-    if (key == 1):
-        print("\n1. Thêm sinh viên.")
-        name = input("nhập tên sinh viên: ")
-        phone = int(input("nhập số điện thoại: "))
-        email = input("nhập email: ")
-        stuID = input("nhập ID sinh viên: ")
-        chuyennganh = str(input("nhập chuyên ngành: "))
-        hanhkiem = str(input("nhập hạnh kiểm: "))
-
-
-        def __init__() -> object:
-           stu = (Student(name, phone, email, stuID, chuyennganh, hanhkiem))
-           ds.append(stu)
-        print("\nThêm sinh viên thành công!")
-
-
-    elif (key == 2):
-        if (dssv.soLuongSinhVien() > 0):
-            print("\n2. Cập nhật thông tin sinh viên. ")
-            print("\nNhập ID: ")
-            ID = int(input())
-            dssv.updateSinhVien(ID)
+    def NhapDuLieuMH():
+        sbj_code = input("Ma mon hoc: ")
+        sbj_name = input("Ten mon hoc: ")
+        credit = input("So tin chi: ")
+        money = float(input("Thanh tien: "))
+        point_process = float(input("Nhap diem qua trinh: "))
+        test_point = float(input("Nhap diem kiem tra: "))
+        test_score = float(input("Nhap diem thi: "))
+        gpa = (point_process + test_point + test_score) / 3
+        if (gpa >= 8.5):
+            classification = "A"
+        elif (gpa >= 8):
+            classification = "B+"
+        elif (gpa >= 7):
+            classification = "B"
+        elif (gpa >= 6.5):
+            classification = "C+"
+        elif (gpa >= 5.5):
+            classification = "C"
+        elif (gpa >= 5):
+            classification = "D+"
+        elif (gpa >= 4):
+            classification = "D"
         else:
-            print("\nDanh sách sinh viên trống!")
+            classification = "F"
+        mh = MonHoc(sbj_code, sbj_name, credit, money, point_process, test_point, test_score, gpa, classification)
+        return mh
 
+    def NhapDuLieuSV(self) -> Student:
+        name = input("Ho ten: ")
+        sdt = input("So dien thoai: ")
+        email = input("Dia chi email: ")
+        gender = input("Nhap gioi tinh: ")
+        st_code = input("Nhap ma so sinh vien:")
+        subject = Hoc_phan.NhapDuLieuMH()
+        sv = Student(name, sdt, email, gender, st_code, subject)
+        return sv
 
-    elif (key == 3):
-        name = input("Nhập Id Sinh viên cần xóa :  ")
-        for i in ds:
-            if i.get_name() == name:
-                assert isinstance(i, object)
-                ds.remove(i)
-                print("Bạn đã xóa sinh viên thành công ")
-                continue
-            print("đã xóa")
-        else:
-                print("không có sinh viên trong danh sách")
-
-
-
-
-    elif (key == 4):
-        print("\n4. Tim kiem sinh vien theo ten.")
-        print("\nNhap ten de tim kiem: ")
-        name = input()
-        if (name == 1):
-            if (dssv.soLuongSinhVien() > 0):
-                print("\n4. Tìm kiếm sinh viên.")
-                print("\nNhập tên sinh viên muốn tìm kiếm: ")
-                name = input()
-                searchResult = dssv.findByName(name)
-                dssv.showSinhVien(searchResult)
-            else:
-                print("\nKhông tìm thấy trong danh sách")
-        else:
-            print("\nKhông tìm thấy sinh viên trong danh sách")
-
-
-    elif (key == 5):
-        if (dssv.soLuongSinhVien() > 0):
-            print("\n5. Sắp xếp sinh viên theo tên.")
-            dssv.sortByName()
-            dssv.showSinhVien(dssv.getListSinhVien())
-        else:
-            print("\nDanh sách sinh viên trống!")
-
-    elif key == 6:
-        print(f"\nHiện có {len(ds)} Sinh Viên \n")
-
-
-    elif key == 7:
-        if len(ds) == 0:
-            print("\n hiện không có sinh viên . Bạn vui lòng thêm sinh viên vào danh sách !")
-        else:
-            print(f"\nHiện có {len(ds)} Sinh viên ")
-            for i in ds:
-                i.show_info()
-
-    elif (key == 8):
-        if (dssv.soLuongSinhVien() > 0):
-            print("\n6. Hiển thị danh sách sinh viên.")
-            dssv.showSinhVien(dssv.getListSinhVien())
-        else:
-            print("\nDanh sách sinh viên trống!")
-
-    elif (key == 0):
-
-        print("\nBạn đã thoát chương trình!")
-        break
-    else:
-        print("\nKhông có chức năng này!")
-        print("\nHãy chọn chức năng có trong menu.")
-
-
+    def NhapDuLieuGV(self) -> Lecturer:
+        name = input("Ho ten: ")
+        sdt = input("So dien thoai: ")
+        email = input("Dia chi email: ")
+        gender = input("Nhap gioi tinh: ")
+        lt_code = input("Ma so sinh vien: ")
+        salary = float(input("Nhap luong: "))
+        subject = Hoc_phan.NhapDuLieuMH()
+        gv = Lecturer(name, sdt, email, gender, lt_code, salary, subject)
+        return gv
