@@ -1,5 +1,3 @@
-import pickle
-from Pythontest import Person, KetQuaHocTap, MonHoc, Student, Lecturer
 from test1 import QuanLySinhVien, QuanLyGiangVien
 from test2 import Hoc_phan
 

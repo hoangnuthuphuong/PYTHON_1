@@ -1,4 +1,4 @@
-from Pythontest import Person, KetQuaHocTap, MonHoc, Student, Lecturer
+from Pythontest import MonHoc, Student, Lecturer
 
 class Hoc_phan:
 
